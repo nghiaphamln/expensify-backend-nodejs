@@ -44,7 +44,7 @@ class UserValidate {
         if (!this.ValidateUsername(username)) {
             error.username = USERNAME_INVALID;
         }
-        else if (await User.findOne({username})) {
+        else if (await User.findOne({username}).exec()) {
             error.username = USERNAME_EXISTS_INVALID;
         }
         if (!this.ValidatePassword(password)) {

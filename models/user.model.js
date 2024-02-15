@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
-const NotFoundError = require('../exceptions/notFound.exception');
-const CustomError = require('../exceptions/custom.exception');
 
 const userSchema = new Schema(
     {
@@ -60,21 +58,6 @@ userSchema.pre('save', async function (next) {
     }
     next();
 });
-
-userSchema.statics.FindUserByCredentials = async (username, password) => {
-    let user = await User.findOne({
-        username,
-        isActivated: true,
-        isDeleted: false
-    });
-
-    if (!user)
-        throw new NotFoundError('User');
-
-    if (!await bcrypt.compare(password, user.password))
-        throw new CustomError('Password invalid.');
-    return user;
-}
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

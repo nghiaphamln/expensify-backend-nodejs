@@ -17,6 +17,7 @@
     "express-useragent": "^1.0.15",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^9.0.2",
+    "memory-cache": "^0.2.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.2",
     "morgan": "~1.9.1"
